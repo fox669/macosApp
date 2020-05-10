@@ -9,33 +9,36 @@ namespace MacosApp.web.Data.Entities
     public class Employee
     {
         public int Id { get; set; }
-        [Required]
-        [MaxLength(30)]
 
+        [MaxLength(30, ErrorMessage ="The {0} field can't have more than {1} characters.")]
+        [Required(ErrorMessage ="The field {0} is mandatory.")] 
         public string Document { get; set; }
-        [Required]
-        [MaxLength(50)]
 
-        public string FirstName { get; set; }
-        [Required]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "The {0} field can't have more than {1} characters.")]
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
         [Display(Name ="First Name")]
+        public string FirstName { get; set; }
 
+        [MaxLength(50, ErrorMessage = "The {0} field can't have more than {1} characters.")]
+        [Required(ErrorMessage = "The field {0} is mandatory.")]        
+        [Display(Name ="Last Name")]
         public string LastName { get; set; }
-        [Required]
-        [MaxLength(50)]
-        [Display(Name="Last Name")]
 
+        [MaxLength(50, ErrorMessage = "The {0} field can't have more than {1} characters.")]
+        [Required(ErrorMessage = "The field {0} is mandatory.")]          
         public string Address { get; set; }
-        [Required]
-        [MaxLength(100)]
 
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        [MaxLength(100, ErrorMessage = "The {0} field can't have more than {1} characters.")]        
+        [Display(Name = "Cell Phone")]
         public string CellPhone { get; set; }
-        [Required]
-        [MaxLength(20)]
-        [Display(Name ="Cell Phone")]
 
+       
         public string FullName => $"{FirstName} {LastName}";
         public string FullNameWithDocument => $"{FirstName} {LastName} {Document }";
+        public ICollection<Labour> labours { get; set; }
+        public ICollection<Agenda> Agendas { get; set; }
+
+
     }
 }

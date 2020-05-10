@@ -12,6 +12,12 @@ namespace MacosApp.web.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
+        public DbSet<Agenda> Agendas { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Labour> Labours { get; set; }
+        public DbSet<LabourType> labourTypes { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ServiceType> ServiceTypes { get; set; }
+
     }
 }
