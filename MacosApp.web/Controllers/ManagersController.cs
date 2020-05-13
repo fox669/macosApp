@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MacosApp.Web.Data.Entities;
 using MacosApp.web.Data;
-using MacosApp.web.Data.Entities;
 
 namespace MacosApp.web.Controllers
 {
-    public class EmployeesController : Controller
+    public class ManagersController : Controller
     {
         private readonly DataContext _context;
 
-        public EmployeesController(DataContext context)
+        public ManagersController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Employees
+        // GET: Managers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            return View(await _context.Managers.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+        // GET: Managers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace MacosApp.web.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (employee == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(manager);
         }
 
-        // GET: Employees/Create
+        // GET: Managers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Managers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(manager);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(manager);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Managers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace MacosApp.web.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
+            var manager = await _context.Managers.FindAsync(id);
+            if (manager == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            return View(manager);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Managers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] Manager manager)
         {
-            if (id != employee.Id)
+            if (id != manager.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace MacosApp.web.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                    _context.Update(manager);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.Id))
+                    if (!ManagerExists(manager.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace MacosApp.web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(manager);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Managers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace MacosApp.web.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (employee == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(manager);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Managers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(employee);
+            var manager = await _context.Managers.FindAsync(id);
+            _context.Managers.Remove(manager);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(int id)
+        private bool ManagerExists(int id)
         {
-            return _context.Employees.Any(e => e.Id == id);
+            return _context.Managers.Any(e => e.Id == id);
         }
     }
 }
