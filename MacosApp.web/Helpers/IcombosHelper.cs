@@ -5,12 +5,12 @@ namespace MacosApp.Web.Helpers
 {
     public interface ICombosHelper
     {
-        IEnumerable<SelectListItem> GetComboPetTypes();
+        IEnumerable<SelectListItem> GetComboLabourTypes();
 
         IEnumerable<SelectListItem> GetComboServiceTypes();
 
-        IEnumerable<SelectListItem> GetComboOwners();
+        IEnumerable<SelectListItem> GetComboEmployees();
 
-        IEnumerable<SelectListItem> GetComboPets(int employeeId);
+        IEnumerable<SelectListItem> GetComboLabours(int employeeId);
     }
 }

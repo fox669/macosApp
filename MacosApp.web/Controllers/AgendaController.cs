@@ -62,8 +62,8 @@ namespace MacosApp.web.Controllers
             var model = new AgendaViewModel
             {
                 Id = agenda.Id,
-                Owners = _combosHelper.GetComboOwners(),
-                Pets = _combosHelper.GetComboPets(0)
+                Employees = _combosHelper.GetComboEmployees(),
+                Labours = _combosHelper.GetComboLabours(0)
             };
 
             return View(model);
@@ -88,8 +88,8 @@ namespace MacosApp.web.Controllers
                 }
             }
 
-            model.Owners = _combosHelper.GetComboOwners();
-            model.Pets = _combosHelper.GetComboPets(model.LabourId);
+            model.Employees = _combosHelper.GetComboEmployees();
+            model.Labours = _combosHelper.GetComboLabours(model.LabourId);
 
             return View(model);
         }

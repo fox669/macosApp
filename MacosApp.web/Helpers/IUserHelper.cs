@@ -2,6 +2,7 @@
 using MacosApp.Web.Data.Entities;
 using System.Threading.Tasks;
 using MacosApp.web.Data.Entities;
+using MacosApp.Web.Models;
 
 namespace MacosApp.Web.Helpers
 {
@@ -16,5 +17,7 @@ namespace MacosApp.Web.Helpers
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+        Task LoginAsync(LoginViewModel model);
+        Task LogoutAsync();
     }
 }

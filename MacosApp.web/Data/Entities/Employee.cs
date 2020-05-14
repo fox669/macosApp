@@ -9,7 +9,7 @@ namespace MacosApp.web.Data.Entities
 
 
 
-        public ICollection<Labour> labours { get; set; }
+        public ICollection<Labour> Labours { get; set; }
 
         public ICollection<Agenda> Agendas { get; set; }
 
