@@ -22,7 +22,7 @@ namespace MacosApp.Web.Controllers.API
         }
 
         [HttpGet]
-        public IEnumerable<LabourType> GetLabourTypes()
+        public IEnumerable<web.Data.Entities.LabourType> GetLabourTypes()
         {
             return _context.LabourTypes.OrderBy(pt => pt.Name);
         }
