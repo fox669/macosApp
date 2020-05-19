@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
-namespace MacosApp.web.Data.Entities
+namespace MacosApp.Web.Data.Entities
 {
     public class User : IdentityUser
     {

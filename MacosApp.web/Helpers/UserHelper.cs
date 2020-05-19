@@ -1,10 +1,9 @@
-﻿using MacosApp.web.Data.Entities;
-using MacosApp.Web.Helpers;
+﻿using Microsoft.AspNetCore.Identity;
+using MacosApp.Web.Data.Entities;
 using MacosApp.Web.Models;
-using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
-namespace MyVet.Web.Helpers
+namespace MacosApp.Web.Helpers
 {
     public class UserHelper : IUserHelper
     {
@@ -121,11 +120,6 @@ namespace MyVet.Web.Helpers
         public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
         {
             return await _userManager.ResetPasswordAsync(user, token, password);
-        }
-
-        Task IUserHelper.LoginAsync(LoginViewModel model)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

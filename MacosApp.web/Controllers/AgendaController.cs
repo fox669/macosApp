@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MacosApp.web.Data;
-using MacosApp.web.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MacosApp.Web.Data;
 using MacosApp.Web.Helpers;
 using MacosApp.Web.Models;
 
-namespace MacosApp.web.Controllers
+namespace MacosApp.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AgendaController : Controller
@@ -79,8 +77,8 @@ namespace MacosApp.web.Controllers
                 if (agenda != null)
                 {
                     agenda.IsAvailable = false;
-                    agenda.Labour = await _dataContext.Labours.FindAsync(model.LabourId);
                     agenda.Employee = await _dataContext.Employees.FindAsync(model.EmployeeId);
+                    agenda.Labour = await _dataContext.Labours.FindAsync(model.LabourId);
                     agenda.Remarks = model.Remarks;
                     _dataContext.Agendas.Update(agenda);
                     await _dataContext.SaveChangesAsync();
@@ -89,7 +87,7 @@ namespace MacosApp.web.Controllers
             }
 
             model.Employees = _combosHelper.GetComboEmployees();
-            model.Labours = _combosHelper.GetComboLabours(model.LabourId);
+            model.Labours = _combosHelper.GetComboLabours(model.EmployeeId);
 
             return View(model);
         }
@@ -111,7 +109,7 @@ namespace MacosApp.web.Controllers
             }
 
             var agenda = await _dataContext.Agendas
-                .Include(a => a.Labour)
+                .Include(a => a.Employee)
                 .Include(a => a.Labour)
                 .FirstOrDefaultAsync(o => o.Id == id.Value);
             if (agenda == null)

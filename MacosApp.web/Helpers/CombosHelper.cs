@@ -1,0 +1,90 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MacosApp.Web.Data;
+
+namespace MacosApp.Web.Helpers
+{
+    public class CombosHelper : ICombosHelper
+    {
+        private readonly DataContext _dataContext;
+
+        public CombosHelper(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
+        public IEnumerable<SelectListItem> GetComboLabourTypes()
+        {
+            var list = _dataContext.LabourTypes.Select(pt => new SelectListItem
+            {
+                Text = pt.Name,
+                Value = $"{pt.Id}"
+            })
+                .OrderBy(pt => pt.Text)
+                .ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "[Select a labour type...]",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetComboServiceTypes()
+        {
+            var list = _dataContext.ServiceTypes.Select(pt => new SelectListItem
+            {
+                Text = pt.Name,
+                Value = $"{pt.Id}"
+            })
+                .OrderBy(pt => pt.Text)
+                .ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "[Select a service type...]",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetComboEmployees()
+        {
+            var list = _dataContext.Employees.Select(p => new SelectListItem
+            {
+                Text = p.User.FullNameWithDocument,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Select an employee...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetComboLabours(int employeeId)
+        {
+            var list = _dataContext.Labours.Where(p => p.Employee.Id == employeeId).Select(p => new SelectListItem
+            {
+                Text = p.Name,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Select a labour...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+    }
+}

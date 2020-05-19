@@ -1,5 +1,4 @@
-﻿using MacosApp.web.Data;
-using MacosApp.web.Data.Entities;
+﻿using MacosApp.web.Data.Entities;
 using MacosApp.Web.Data.Entities;
 using MacosApp.Web.Helpers;
 using System;
@@ -32,7 +31,7 @@ namespace MacosApp.Web.Data
             await CheckEmployeeAsync(customer);
             await CheckManagerAsync(manager);
             await CheckLaboursAsync();
-            await CheckAgendasAsync();
+            //await CheckAgendasAsync();
         }
 
         private async Task CheckRoles()
@@ -45,9 +44,9 @@ namespace MacosApp.Web.Data
             string document,
             string firstName,
             string lastName,
-            string email, 
+            string email,
             string phone,
-            string address, 
+            string address,
             string role)
         {
             var user = await _userHelper.GetUserByEmailAsync(email);
@@ -66,6 +65,9 @@ namespace MacosApp.Web.Data
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, role);
+
+                var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
             }
 
             return user;
@@ -122,7 +124,7 @@ namespace MacosApp.Web.Data
             }
         }
 
-        private void AddLabour(string name, Employee employee, LabourType labourType, string workcrew)
+        private void AddLabour(string name, Employee employee, LabourType labourType, string activity)
         {
             _dataContext.Labours.Add(new Labour
             {
@@ -130,7 +132,7 @@ namespace MacosApp.Web.Data
                 Name = name,
                 Employee = employee,
                 LabourType = labourType,
-                WorkCrew = workcrew
+                Activity = activity
             });
         }
 

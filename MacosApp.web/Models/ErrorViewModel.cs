@@ -1,6 +1,6 @@
 using System;
 
-namespace MacosApp.web.Models
+namespace MacosApp.Web.Models
 {
     public class ErrorViewModel
     {

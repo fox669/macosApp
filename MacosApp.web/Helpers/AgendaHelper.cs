@@ -1,5 +1,7 @@
 ﻿using MacosApp.web.Data;
 using MacosApp.web.Data.Entities;
+using MacosApp.Web.Data;
+using MacosApp.Web.Data.Entities;
 using MacosApp.Web.Helpers;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,4 @@
-﻿using MacosApp.web.Data.Entities;
-
-namespace MacosApp.Web.Data.Entities
+﻿namespace MacosApp.Web.Data.Entities
 {
     public class Manager
     {
