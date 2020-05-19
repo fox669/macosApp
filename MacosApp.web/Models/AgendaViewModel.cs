@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MacosApp.Web.Data.Entities;
-using MacosApp.web.Data.Entities;
 
 namespace MacosApp.Web.Models
 {
@@ -10,7 +9,7 @@ namespace MacosApp.Web.Models
     {
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         [Display(Name = "Employee")]
-        [Range(1, int.MaxValue, ErrorMessage = "You must select an .")]
+        [Range(1, int.MaxValue, ErrorMessage = "You must select an employee.")]
         public int EmployeeId { get; set; }
 
         public IEnumerable<SelectListItem> Employees { get; set; }

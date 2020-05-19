@@ -15,3 +15,4 @@ namespace MacosApp.Web.Models
         public bool RememberMe { get; set; }
     }
 }
+

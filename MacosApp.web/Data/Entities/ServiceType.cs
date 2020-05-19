@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MacosApp.web.Data.Entities
+namespace MacosApp.Web.Data.Entities
 {
     public class ServiceType
     {

@@ -1,0 +1,25 @@
+﻿@model MacosApp.Web.Models.LabourViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Labour</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddLabour" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployeeId" />
+
+            <partial name="_Labour" />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Details" asp-route-id="@Model.EmployeeId" class="btn btn-success">Back to Employee</a>
+            </div>
+        </form>
+    </div>
+</div>

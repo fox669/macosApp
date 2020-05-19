@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MacosApp.Web.Data.Entities;
-using System.Threading.Tasks;
-using MacosApp.web.Data.Entities;
 using MacosApp.Web.Models;
+using System.Threading.Tasks;
 
 namespace MacosApp.Web.Helpers
 {
@@ -18,8 +17,27 @@ namespace MacosApp.Web.Helpers
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
 
-        Task LoginAsync(LoginViewModel model);
+        Task<SignInResult> LoginAsync(LoginViewModel model);
 
         Task LogoutAsync();
+
+        Task<bool> DeleteUserAsync(string email);
+
+        Task<IdentityResult> UpdateUserAsync(User user);
+
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+
+        Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
+
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+
+        Task<User> GetUserByIdAsync(string userId);
+
+        Task<string> GeneratePasswordResetTokenAsync(User user);
+
+        Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
     }
 }
+

@@ -1,12 +1,10 @@
-﻿using MacosApp.web.Data;
-using MacosApp.web.Data.Entities;
-using MacosApp.Web.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MacosApp.Web.Data;
+using MacosApp.Web.Data.Entities;
 
-namespace MacosApp.web.Helpers
+namespace MacosApp.Web.Helpers
 {
     public class AgendaHelper : IAgendaHelper
     {
